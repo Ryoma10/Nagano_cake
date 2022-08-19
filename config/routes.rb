@@ -1,4 +1,24 @@
 Rails.application.routes.draw do
+  namespace :public do
+    root 'homes#top'
+    get 'homes/about', as: 'about'
+  end
+  namespace :admin do
+    resources :orders, only: [:show, :update]
+  end
+  namespace :admin do
+    resources :customers, only: [:index, :show, :edit, :update]
+  end
+  namespace :admin do
+    resources :genres, only: [:index, :create, :edit, :update]
+  end
+  namespace :admin do
+    resources :items, only: [:index, :new, :create, :show, :edit, :update]
+  end
+  namespace :admin do
+    root 'homes#top'
+  end
+
 # 顧客用
 # URL /customers/sign_in ...
 devise_for :customers,skip: [:passwords], controllers: {
