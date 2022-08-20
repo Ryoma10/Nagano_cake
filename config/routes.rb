@@ -1,5 +1,24 @@
 Rails.application.routes.draw do
   namespace :public do
+    resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+  end
+  namespace :public do
+    resources :orders, only: [:new, :complete, :create, :index, :show]
+    get 'orders/confirm', as: 'orders_confirm'
+  end
+  namespace :public do
+    resources :cart_items, only: [:index, :update, :destroy, :create]
+    get 'cart_items/destroy_all', as: 'cart_items_destroy_all'
+  end
+  namespace :public do
+    resources :customers, only: [:show, :edit, :update, :destroy]
+    get 'customers/confirm', as: 'customers_confirm'
+  end
+  namespace :public do
+    resources :items, only: [:index, :show]
+  end
+
+  namespace :public do
     root 'homes#top'
     get 'homes/about', as: 'about'
   end

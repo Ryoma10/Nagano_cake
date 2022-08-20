@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>NaganoCake</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,57 +14,69 @@
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand" href="/">LOGO</a>
-          <ul class="navbar-nav ml-auto">
-            <% if customer_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "マイページ", public_customer_path(current_user.id), method: :delete, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '商品一覧', public_items_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'カート', public_cart_items_path(current_user.id), class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_customer_session_path, class: 'nav-link text-dark' %>
-            </li>
+          <a class="navbar-brand" href="/public">LOGO</a>
+          <div class="collapse navbar-collapse flex-column">
+            <ul class="navbar-nav ml-auto">
+              <% if customer_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "マイページ", public_customer_path(current_user.id), method: :delete, class: 'nav-link text-dark mx-1' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '商品一覧', public_items_path, class: 'nav-link text-dark mx-1' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'カート', public_cart_items_path(current_user.id), class: 'nav-link text-dark mx-1' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_customer_session_path, class: 'nav-link text-dark mx-1' %>
+              </li>
 
-            <% elsif admin_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "注文履歴一覧", admin_root_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_admin_session_path, class: 'nav-link text-dark' %>
-            </li>
+              <% elsif admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-dark mx-1' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-dark mx-1' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "注文履歴一覧", admin_root_path, class: 'nav-link text-dark mx-1' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark mx-1' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_admin_session_path, class: 'nav-link text-dark mx-1' %>
+              </li>
 
-            <% else %>
-            <li class="nav-item">
-              <%= link_to "About", public_about_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "商品一覧", public_items_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %>
-            </li>
-            <% end %>
+              <% else %>
+              <li class="nav-item">
+                <%= link_to "About", public_about_path, class: 'nav-link text-dark mx-1' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "商品一覧", public_items_path, class: 'nav-link text-dark mx-1' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark mx-1' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark mx-1' %>
+              </li>
+              <% end %>
             </ul>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search">
+                  <button class="btn btn-outline-success" type="button" id="button-addon2">検索</button>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>
     <%= yield %>
+    <footer class="shadow-sm mt-auto py-3 border-top border-dark">
+    </footer>
   </body>
 </html>
