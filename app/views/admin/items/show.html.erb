@@ -1,1 +1,30 @@
-<h1>商品詳細</h1>
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="col-3 px-0 mx-auto">
+      <h4>商品詳細</h4>
+      <%= image_tag @item.image.variant( resize: "200" ) %>
+    </div>
+    <div class="col-8 px-0 mx-auto">
+    <dl class="clearfix">
+      <dt class="w-25 float-left">商品名</dt>
+      <dd class="w-auto float-left"><%= @item.name %></dd>
+    </dl>
+    <dl class="clearfix">
+      <dt class="w-25 float-md-left">商品説明</dt>
+      <dd class="w-auto float-md-left"><%= @item.introduction %></dd>
+    </dl>
+    <dl class="clearfix">
+      <dt class="w-25 float-md-left">ジャンル</dt>
+      <dd class="w-auto float-md-left"><%= @item.genre.name %></dd>
+    </dl>
+    <dl class="clearfix">
+      <dt class="w-25 float-md-left">
+        &nbsp税込価格&nbsp</br>
+        (税抜価格)
+      </dt>
+      <dd class="w-auto float-md-left"><%= @item.price %></dd>
+    </dl>
+    </div>
+  </div>
+</div>
