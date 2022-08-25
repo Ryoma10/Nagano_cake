@@ -11,7 +11,7 @@
           <th>商品名</th><th><%= @item.name %></th>
         </tr>
         <tr>
-          <td>商品説明</td><td><%= @item.introduction %></td>
+          <td>商品説明</td><td><%= safe_join(@item.introduction.split("\n"),tag(:br)) %></td>
         </tr>
         <tr>
           <td>ジャンル</td><td><%= @item.genre.name %></td>
