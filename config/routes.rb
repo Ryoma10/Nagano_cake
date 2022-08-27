@@ -4,18 +4,19 @@ Rails.application.routes.draw do
 
     resources :orders, only: [:new, :complete, :create, :index, :show] do
       collection do
-        post :confirm
+        get :confirm
       end
     end
 
     resources :cart_items, only: [:index, :update, :destroy, :create]
     get 'cart_items/destroy_all', as: 'cart_items_destroy_all'
 
-    resource :customers, only: [:show, :edit, :update, :destroy] do
+    resource :customers, only: [:edit, :update, :destroy] do
       collection do
-        post :confirm
+        get :confirm
       end
     end
+    get 'customers/mypage' => 'customers#show', as: 'customer'
 
     resources :items, only: [:index, :show]
 

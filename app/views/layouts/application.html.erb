@@ -19,7 +19,7 @@
             <ul class="navbar-nav ml-auto">
               <% if customer_signed_in? %>
               <li class="nav-item">
-                <%= link_to "マイページ", customers_path, class: 'nav-link text-dark mx-1' %>
+                <%= link_to "マイページ", customer_path, class: 'nav-link text-dark mx-1' %>
               </li>
               <li class="nav-item">
                 <%= link_to '商品一覧', items_path, class: 'nav-link text-dark mx-1' %>

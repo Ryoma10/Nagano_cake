@@ -1,2 +1,65 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="col-9 px-0 mt-3">
+      <h4 class="m-3">会員情報編集</h4>
+      <%= form_with model: @customer, url: customers_path, method: :patch do |f| %>
+        <table class="table table-borderless ml-5">
+        <tr>
+          <th>名前</th>
+          <th>(姓)</th>
+          <th class="field">
+            <%= f.text_field :last_name %>
+            <%= f.label "(名)", class: "ml-5" %>
+            <%= f.text_field :first_name, class: "ml-3" %>
+          </th>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <th>(セイ)</th>
+          <th class="field">
+            <%= f.text_field :last_name_kana %>
+            <%= f.label "(メイ)", class: "ml-5" %>
+            <%= f.text_field :first_name_kana %>
+          </th>
+        </tr>
+        <tr>
+          <th>郵便番号</th>
+          <th></th>
+          <th class="field">
+            <%= f.text_field :postal_code %>
+          </th>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <th></th>
+          <th class="field">
+            <%= f.text_field :address, size: 60 %>
+          </th>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <th></th>
+          <th class="field">
+            <%= f.text_field :telephone_number %>
+          </th>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <th></th>
+          <th class="field">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </th>
+        </tr>
+        <tr>
+          <th></th>
+          <th></th>
+          <th class="form-group col-4 mx-auto">
+          <%= f.submit '変更を保存', class: "btn btn-success" %>
+          </th>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
