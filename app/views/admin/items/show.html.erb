@@ -8,20 +8,20 @@
     <div class="col-6 px-0 mt-5 mx-auto">
       <table class="table table-borderless">
         <tr>
-          <th>商品名</th><th><%= @item.name %></th>
+          <th>商品名</th><td><%= @item.name %></td>
         </tr>
         <tr>
-          <td>商品説明</td><td><%= safe_join(@item.introduction.split("\n"),tag(:br)) %></td>
+          <th>商品説明</th><td><%= safe_join(@item.introduction.split("\n"),tag(:br)) %></td>
         </tr>
         <tr>
-          <td>ジャンル</td><td><%= @item.genre.name %></td>
+          <th>ジャンル</th><td><%= @item.genre.name %></td>
         </tr>
         <tr valign="middle">
-          <td>税込価格</br>(税抜価格)</td>
+          <th>税込価格</br>(税抜価格)</th>
           <td><%= @item.add_tax_price.to_s(:dalimited) %>(<%= @item.price.to_s(:dalimited) %>)円</td>
         </tr>
         <tr>
-          <td>販売ステータス</td>
+          <th>販売ステータス</th>
           <td>
             <% if @item.is_active %>
               <p class="text-success font-weight-bold">販売中</p>
