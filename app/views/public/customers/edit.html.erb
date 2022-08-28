@@ -54,8 +54,11 @@
         <tr>
           <th></th>
           <th></th>
-          <th class="form-group col-4 mx-auto">
-          <%= f.submit '変更を保存', class: "btn btn-success" %>
+          <th class="field">
+            <%= f.submit '編集内容を保存', class: "btn btn-success mr-5" %>
+            <%= link_to confirm_customers_path, class: "ml-5" do %>
+              <button type="button" class="btn btn-danger">退会する</button>
+            <% end %>
           </th>
         </tr>
       </table>

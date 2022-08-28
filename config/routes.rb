@@ -11,9 +11,10 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:index, :update, :destroy, :create]
     get 'cart_items/destroy_all', as: 'cart_items_destroy_all'
 
-    resource :customers, only: [:edit, :update, :destroy] do
+    resource :customers, only: [:edit, :update] do
       collection do
         get :confirm
+        patch :withdrawal
       end
     end
     get 'customers/mypage' => 'customers#show', as: 'customer'
