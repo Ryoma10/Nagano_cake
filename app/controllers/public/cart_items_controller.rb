@@ -1,6 +1,6 @@
 class Public::CartItemsController < ApplicationController
   def create
-    @cart_item = CartItem.new(params_cart_item)
+    @cart_item = CartItem.new(cart_item_params)
     @cart_items = current_customer.cart_items.all
       @cart_items.each do |cart_item|
         if cart_item.item_id == @cart_item.item_id
@@ -19,11 +19,28 @@ class Public::CartItemsController < ApplicationController
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
   end
 
+  def update
+    cart_item = CartItem.find(params[:id])
+    cart_item.update(cart_item_params)
+    redirect_to cart_items_path
+  end
+
+  def destroy
+    cart_item = CartItem.find(params[:id])
+    cart_item.destroy
+    redirect_to cart_items_path,notice: "商品が削除されました"
+  end
+
+  def destroy_all
+    cart_items = current_customer.cart_items.all
+    cart_items.destroy_all
+    redirect_to cart_items_path,notice: "カート内商品がすべて削除されました"
+  end
 
   private
 
-  def params_cart_item
-    params.permit(:amount, :item_id, :customer_id)
+  def cart_item_params
+    params.require(:cart_item).permit(:amount, :item_id, :customer_id)
   end
 
 end
