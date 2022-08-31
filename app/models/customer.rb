@@ -12,4 +12,8 @@ class Customer < ApplicationRecord
     super && (is_active == true)
   end
 
+  def address_display
+  '〒' + postal_code + ' ' + address + ' ' + last_name + first_name
+  end
+
 end

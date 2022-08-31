@@ -4,8 +4,8 @@ class Order < ApplicationRecord
   has_many :order_details, dependent: :destroy
 
   enum payment_method: {
-    credit: 0,  #クレジットカード
-    bank: 1,  #銀行振込
+    credit_card: 0,  #クレジットカード
+    transfer: 1  #銀行振込
   }
 
   enum status: {
@@ -13,7 +13,7 @@ class Order < ApplicationRecord
     check: 1, #入金確認
     making: 2,  #製作中
     preparation: 3,  #発送準備
-    shipped_out: 4, #発送済み
+    shipped_out: 4 #発送済み
   }
 
 end
