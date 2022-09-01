@@ -1,2 +1,60 @@
-<h1>Public::Orders#confirm</h1>
-<p>Find me in app/views/public/orders/confirm.html.erb</p>
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="col-9 px-0">
+      <div class="ml-3">
+        <h4>注文情報確認</h4>
+      </div>
+      <table class="table border my-3">
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
+        <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td><%= image_tag cart_item.item.image.variant( resize: "50" ) %>&emsp;<%= cart_item.item.name %></td>
+            <td><%= cart_item.item.add_tax_price.to_s(:dalimited) %></td>
+            <td>
+              <%= cart_item.amount %>
+            </td>
+            <td><%= cart_item.sum_of_price %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-2 px-0 ml-auto">
+      <table class="table border my-5">
+        <tr>
+          <th>送料</th><td><%= @order.shipping_cost %></td>
+        </tr>
+        <tr>
+          <th>商品合計</th><td>¥<%= @total.round.to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <th>請求金額</th><%= @order.shipping_cost + @total.round.to_s(:delimited) %>
+          <!-- エラー１ -->
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-5 px-0">
+      <table class="table table-borderless">
+        <tr>
+          <th>支払方法</th>
+          <th><%= @order.payment_method %></th>
+        </tr>
+        <tr>
+          <th>お届け先</th>
+          <th><%= @order.address_display %></th>
+          <!-- エラー２ -->
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class=" text-center">
+    <%= button_to "注文を確定する", orders_path, method: :post, class: "btn btn-success" %>
+  </div>
+</div>
