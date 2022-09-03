@@ -10,4 +10,8 @@ class OrderDetail < ApplicationRecord
     making_complete: 3,  #製作完了
   }
 
+  def sum_of_price
+    item.add_tax_price * amount
+  end
+
 end

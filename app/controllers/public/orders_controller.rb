@@ -24,15 +24,15 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
-    @order_detail = OrderDetail.new
-    @order_detail.order_id = @order.id
-    @order_detail.price_at_purchase = @order.total_payment
     @cart_items = current_customer.cart_items.all
-      @cart_items.each do |cart_item|
-        @order_detail.item_id = cart_item.item.id
-        @order_detail.amount = cart_item.amount
-      end
-    @order_detail.save
+    @cart_items.each do |cart_item|
+      @order_detail = OrderDetail.new
+      @order_detail.order_id = @order.id
+      @order_detail.item_id = cart_item.item.id
+      @order_detail.amount = cart_item.amount
+      @order_detail.price_at_purchase = cart_item.item.add_tax_price
+      @order_detail.save
+    end
     @cart_items.destroy_all
     redirect_to complete_orders_path
   end
@@ -42,9 +42,13 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders.all
   end
 
   def show
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details.all
+    @total = @order_details.inject(0) { |sum, item| sum + item.sum_of_price }
   end
 
 
